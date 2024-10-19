@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shoescad - 0.1.0b</title>
+    <link rel="stylesheet" href="static/content/styles.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" class="logo">
+            <a href="#" class="logo-name" data-lang="header">shoescad</a>
+        </div>
+        <nav>
+            <ul>
+                <li class="dropdown">
+                    <a class="drop-btn" data-lang="modeling">modeling</a>
+                    <!--<div class="dropdown-content">
+                        <a href="#">Link 1.1</a>
+                        <a href="#">Link 1.2</a>
+                        <a href="#">Link 1.3</a>
+                    </div>-->
+                </li>
+                <li class="dropdown">
+                    <a href="/" class="drop-btn" data-lang="grading">grading</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="language-switcher">
+            <button id="ru" class="lang-btn">RU</button>
+            <button id="en" class="lang-btn">EN</button>
+            <button id="q" class="lang-btn">?</button>
+        </div>
+    </header>
+    <div id="popup-overlay"></div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <h2 data-lang="popup-h2">Shoescad - tutorial</h2>
+            <p data-lang="tutorial">Here you can grade the last. To do this, upload a file with a 3D model to the page, set the size range and click the 'Send' button. Then download the files with the graded lasts.</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="input-form">
+            <div class="label_input-form">
+                <label for="name_form" class="label-form" data-lang="name-form">Grading module</label>
+            </div>
+            <form id="uploadForm" enctype="multipart/form-data" method="POST" action="/upload">
+                <div class="form-group">
+                    <label for="field1" data-lang="field1">Length, mm:</label>
+                    <output id="field1" name="field1"></output>
+                </div>
+                <div class="form-group">
+                    <label for="field2" data-lang="field2">Width, mm:</label>
+                    <output id="field2" name="field2"></output>
+                </div>
+                <div class="form-group">
+                    <label for="field3" data-lang="field3">Height, mm:</label>
+                    <output id="field3" name="field3"></output>
+                </div>
+                <div class="form-group">
+                    <label for="field4" data-lang="field4">Size, EUR:</label>
+                    <output id="field4" name="field4"></output>
+                </div>
+                <div style="display: none;">
+                    <input id="field5" name="field5" value="">
+                </div>
+                <div class="label_input-form">
+                    <label for="name_form" class="label-form"></label>
+                </div>
+                <div class="label_input-form">
+                    <label for="name_form" class="label-form" data-lang="select-range">Select a range</label>
+                </div>
+                <div class="dropdowns-container">
+                    <div class="dropdown-item">
+                        <label for="dropdown1">From:</label>
+                        <select id="dropdown1" name="dropdown1" class="custom-dropdown">
+                            <option value="">33</option>
+                        </select>
+                    </div>
+                    <div class="dropdown-item">
+                        <label for="dropdown2">To:</label>
+                        <select id="dropdown2" name="dropdown2" class="custom-dropdown">
+                            <option value="">47</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" id="uploadButton" data-lang="submit">Submit</button>
+            </form>
+        </div>
+        <main class="content">
+            <div class="file-upload">
+                <input id="fileInput" type="file" class="file-input" accept=".stl">
+                <div class="upload-area" id="uploadArea" data-lang="upload-area">
+                    <p>Drag and drop files here or click to select files</p>
+                </div>
+            </div>
+            <div id="viewer" class="viewer"></div>
+        </main>
+    </div>
+    <script type="importmap">
+        {
+           "imports": {
+             "three": "https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js",
+             "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.166.1/examples/jsm/"
+           }
+         }
+    </script>
+    <script type="module" src="static/scripts/script.js"></script>
+    <script type="module" src="static/scripts/script_upload.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="input-form">
+    <div class="label_input-form">
+        <label for="name_form" class="label-form" data-lang="name-form">Resize module</label>
+    </div>
+    <form id="uploadForm" enctype="multipart/form-data" method="POST" action="/upload">
+        <div class="form-group">
+            <label for="field1" data-lang="field1">Length, mm:</label>
+            <output id="field1" name="field1"></output>
+        </div>
+        <div class="form-group">
+            <label for="field2" data-lang="field2">Width, mm:</label>
+            <output id="field2" name="field2"></output>
+        </div>
+        <div class="form-group">
+            <label for="field3" data-lang="field3">Height, mm:</label>
+            <output id="field3" name="field3"></output>
+        </div>
+        <div class="form-group">
+            <label for="field4" data-lang="field4">Size, EUR:</label>
+            <output id="field4" name="field4"></output>
+        </div>
+        <div style="display: none;">
+            <input id="field5" name="field5" value="">
+        </div>
+        <div class="label_input-form">
+            <label for="name_form" class="label-form"></label>
+        </div>
+        <div class="label_input-form" style="display: none;">
+            <label for="name_form" class="label-form" data-lang="select-range">Select a size:</label>
+        </div>
+        <div class="form-group">
+            <label for="dropdown1" data-lang="select-range">Select a size:</label>
+            <select id="dropdown1" name="dropdown1" class="custom-dropdown">
+                <option value="33" selected>33</option>
+            </select>
+        </div>
+        <div class="dropdowns-container" style="display: none;">
+            <div class="dropdown-item">
+                <label for="dropdown1">From:</label>
+                <select id="dropdown1" name="dropdown1" class="custom-dropdown">
+                    <option value="">33</option>
+                </select>
+            </div>
+            <div class="dropdown-item" style="display: none;">
+                <label for="dropdown2">To:</label>
+                <select id="dropdown2" name="dropdown2" class="custom-dropdown">
+                    <option value="">47</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" id="uploadButton" data-lang="submit">Resize</button>
+    </form>
+</div>
+<div class="content">
+    <div class="file-upload">
+        <input id="fileInput" type="file" class="file-input" accept=".stl">
+        <div class="upload-area" id="uploadArea" data-lang="upload-area">
+            <p>Drag and drop files here or click to select files</p>
+        </div>
+    </div>
+    <div id="viewer" class="viewer"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="importmap">
+    {
+       "imports": {
+         "three": "https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js",
+         "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.166.1/examples/jsm/"
+       }
+     }
+</script>
+<script type="module" src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='scripts/script_upload.js') }}"></script>
+{% endblock %}
